@@ -9,7 +9,8 @@ let successfulFlags = 0;
 let tilesClicked = 0;
 let gameOverStatus = false;
 
-
+// globals for the grid width and height
+// could be easily changed to allow for more tiles/harder difficulty
 function setGlobals() {
     let screenWidth = screen.width;
     console.log(screenWidth)
@@ -22,6 +23,7 @@ function setGlobals() {
 
 }
 
+//shows the number of mines and total number of flags
 function generateHUD() {
     const minesCount = document.querySelector('.mines-count')
     minesCount.textContent = "🚨 " + minesNumber
@@ -35,6 +37,7 @@ function setFlags() {
     setFlagsCount.textContent = '🚩 ' + flags
 }
 
+// gets the number of nearby mines when a tile is pressed
 function totalNearbyMines(i) {
     let totalNearbyMines = 0;
     const isLeftEdge = (i % width === 0)
@@ -69,6 +72,8 @@ function totalNearbyMines(i) {
     return totalNearbyMines
 }
 
+// checks to see if a nearby tile has a mine
+// if the tile is blank, recurse to that tile and do the same
 function recurseTiles(tile) {
     const tileID = parseInt(tile.id)
     const isLeftEdge = (tileID % width === 0)
@@ -140,7 +145,9 @@ function recurseTiles(tile) {
 }
 
 
-
+//"renders" a splash screen (game over, you win, etc)
+// then adds it to the DOM
+// also moves other splash screens to behind the background atm (zIndex -1)
 function renderSplashScreen(message, querySelector) {
 
     const splashQuery = document.querySelector(querySelector)
@@ -184,6 +191,8 @@ function renderSplashScreen(message, querySelector) {
     
 }
 
+// puts a splash screen at the front (zIndex 99) or back (zIndex -1), depending on situation
+// the better move would be delete them from the DOM, but this is faster lol
 function mountGameOver(mode) {
     if (mode) {
         document.getElementById("game-over-screen").style.zIndex = "99"
@@ -224,6 +233,7 @@ function restartGame() {
     setFlags()
 }
 
+// Durstenfeld shuffle for randomizing mines
 function shuffleArray(inputArray) {
    for (let i = inputArray.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
