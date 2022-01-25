@@ -7,14 +7,21 @@
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <div class="title">Maritime Mines</div>
+    <div id="back-button" class="back-button">Back to Start</div>
     <div id="hud" class="hud">
         <div class="hud-item flags-count" id="flags-count"></div>
         <div class="hud-item mines-count" id="mines-count"></div>
     </div>
     <div id="mine-grid" class="mine-grid"></div>
     <div id="game-over-screen" class="game-over-screen"></div>
-    <div id="winning-screen" class="winning-screen">
+    <div id="winning-screen" class="winning-screen"></div>
+    <div id="start-screen-container" class="start-screen-container">
+        <div id="start-screen" class="start-screen">
+            <div class="game-title">Maritime Mines</div>
+            <div class="button start-screen-button" onclick="startGame()">Start Game</div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>

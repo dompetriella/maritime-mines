@@ -353,8 +353,13 @@ function flag(tile) {
     }
 }
 
-setGlobals()
-createBoard()
-generateHUD()
-renderSplashScreen("Game Over",".game-over-screen")
-renderSplashScreen("You Won!",".winning-screen")
+function startGame() {
+    setGlobals()
+    createBoard()
+    generateHUD()
+    renderSplashScreen("Game Over",".game-over-screen")
+    renderSplashScreen("You Won!",".winning-screen")
+    document.getElementById("start-screen-container").style.zIndex = "-1"
+    document.getElementById("start-screen").style.zIndex = "-1"  
+    document.getElementById("back-button").style.zIndex = "" 
+}
